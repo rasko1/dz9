@@ -2,7 +2,7 @@ package Radio;
 
 public class Radio {
     private int currentFrequency;
-    public int currentVolume;
+    private int currentVolume;
 
     public int getCurrentFrequency() {
         return currentFrequency;
