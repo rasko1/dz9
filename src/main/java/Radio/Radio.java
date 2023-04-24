@@ -1,8 +1,23 @@
 package Radio;
 
 public class Radio {
-    private int currentFrequency;
-    private int currentVolume;
+    private int minStation;
+    private final int maxStation;
+    private int currentFrequency = minStation;
+    private int minVolume;
+    private int maxVolume;
+    public int currentVolume = minVolume;
+
+    public Radio() {
+        this.minStation = 0;
+        this.maxStation = 9;
+        this.minVolume = 0;
+        this.maxVolume = 100;
+    }
+
+    public Radio(int countStation) {
+        this.maxStation = countStation - 1;
+    }
 
     public int getCurrentFrequency() {
         return currentFrequency;
@@ -12,49 +27,56 @@ public class Radio {
         return currentVolume;
     }
 
-    public void setCurrentVolume(int newCurrentVolume) {
-        if (newCurrentVolume <= 0) {
-            newCurrentVolume = 0;
+    public void setCurrentVolume(Integer newCurrentVolume) {
+        if (newCurrentVolume <= minVolume) {
+            newCurrentVolume = minVolume;
         }
-        if (newCurrentVolume >= 10) {
-            newCurrentVolume = 10;
+        if (newCurrentVolume >= maxVolume) {
+            newCurrentVolume = maxVolume;
         }
         currentVolume = newCurrentVolume;
     }
 
-    public void setDirectAccessToFrequency(int newCurretnFrequency) {
-        if (newCurretnFrequency < 0) {
-            newCurretnFrequency = 0;
+    public void setDirectAccessToFrequency(int newCurrentFrequency) {
+        if (newCurrentFrequency < minStation) {
+            newCurrentFrequency = minStation;
         }
-        if (newCurretnFrequency > 9) {
-            newCurretnFrequency = 9;
+
+
+        if (newCurrentFrequency > maxStation) {
+            newCurrentFrequency = maxStation;
         }
-        currentFrequency = newCurretnFrequency;
+        currentFrequency = newCurrentFrequency;
     }
 
     public void setNextFrequency() {
-        if (currentFrequency == 9) {
-            currentFrequency = -1;
+        if (currentFrequency == maxStation) {
+            currentFrequency = minStation - 1;
         }
         currentFrequency = currentFrequency + 1;
     }
 
     public void setPrevFrequency() {
-        if (currentFrequency == 0) {
-            currentFrequency = 10;
+        if (currentFrequency == minStation) {
+            currentFrequency = maxStation + 1;
         }
         currentFrequency = currentFrequency - 1;
     }
 
     public void increaseVolume() {
-        if (currentVolume > 0 && currentVolume < 10) {
+        if (currentVolume > minVolume && currentVolume < maxVolume) {
             currentVolume = currentVolume + 1;
         }
     }
 
     public void decreaseVolume() {
-        if (currentVolume > 1 && currentVolume < 10) {
+        if (currentVolume > minVolume && currentVolume < maxVolume) {
             currentVolume = currentVolume - 1;
         }
     }
 }
+
+
+
+
+

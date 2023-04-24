@@ -15,6 +15,7 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
 
+
     @ParameterizedTest
     @CsvFileSource(files = "src/test/resources/minFrequencyTest.csv")
     public void minFrequency(int frequency, int expected) {
